@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prot": "protractor protractor.conf.js",
-    "prot-update-driver":"webdriver-manager update"
+    "prot-update-driver": "webdriver-manager update"
   },
   "private": true,
   "dependencies": {

@@ -4,25 +4,25 @@ import { browser, element, by } from 'protractor';
 describe('protractor-test-project App', () => {
   
 
-  beforeEach(() => {
-    
+  beforeAll(() => {
+    browser.ignoreSynchronization = true;
   });
 
-  it('waitForAngularEnabled test ', () => {
-    
-    // here in my project i use to go to an sso page (openam -> no angular app) for authentication
-    browser.waitForAngularEnabled(false);
-
+  it('should navigate to google', () => {
     browser.get('https://www.google.fr');
     browser.wait(() => element(by.id('lst-ib')).isPresent(), 10000, 'too long');
     element(by.id('lst-ib')).sendKeys("protractor issue waitForAngularEnabled");
-
-    // i return to my app
-    browser.get('/');
-
-    browser.waitForAngularEnabled(true);
-    let titleElement = element(by.id("title"));
-    expect(titleElement.isPresent())
-
+  });
+  
+  describe("Return to app", () => {
+	beforeAll(() => {
+		browser.ignoreSynchronization = false;
+	});
+	it("should return to app", () => {
+		// i return to my app
+		browser.get('/');
+		let titleElement = element(by.id("title"));
+		expect(titleElement.isPresent()).toBe(true);
+	});
   });
 });
